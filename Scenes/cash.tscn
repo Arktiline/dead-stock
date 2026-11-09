@@ -10,6 +10,7 @@ material = SubResource("StandardMaterial3D_6dvrc")
 size = Vector3(1, 0.1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ioy06"]
+margin = 0.01
 size = Vector3(1, 0.1, 0.5)
 
 [node name="RigidBody3D" type="RigidBody3D" unique_id=451322249]
