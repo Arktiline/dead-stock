@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dql1jxgkt8qc1"]
+
+[ext_resource type="Script" uid="uid://b227de02krlij" path="res://camera_controller.gd" id="1_3dryh"]
+[ext_resource type="PackedScene" uid="uid://b7qdi5atiuwnm" path="res://Scenes/printer.tscn" id="2_wowpa"]
+[ext_resource type="PackedScene" uid="uid://2ul7nk8efegb" path="res://Scenes/conveyor.tscn" id="3_i6g32"]
+[ext_resource type="Material" uid="uid://w82k8syuuthq" path="res://ConveyorMaterial.tres" id="4_1l0tm"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ioy06"]
+size = Vector2(20, 20)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ioy06"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_6dvrc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ioy06"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="Environment" id="Environment_ioy06"]
+background_mode = 1
+background_color = Color(0.44590956, 0.6222347, 0.8644047, 1)
+
+[node name="Root" type="Node3D" unique_id=851679518]
+
+[node name="CameraRig" type="Node3D" parent="." unique_id=117728974]
+script = ExtResource("1_3dryh")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=1624076006]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 14, 14)
+projection = 1
+current = true
+size = 18.0
+
+[node name="World" type="Node3D" parent="." unique_id=1432943980]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World" unique_id=1439609769]
+mesh = SubResource("PlaneMesh_ioy06")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World" unique_id=525799012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4907026, 0.80183196, -3.80369)
+mesh = SubResource("CapsuleMesh_ioy06")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="World" unique_id=1844034484]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7084007, 0.17396021, 0)
+mesh = SubResource("TorusMesh_6dvrc")
+
+[node name="GroundCollision" type="StaticBody3D" parent="World" unique_id=1922549999]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/GroundCollision" unique_id=1022987325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ioy06")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1547032338]
+environment = SubResource("Environment_ioy06")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1940763071]
+transform = Transform3D(0.57160634, 0.40022323, -0.7163013, 0, 0.87297606, 0.48776305, 0.820528, -0.27880844, 0.49899867, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Level1" type="Node3D" parent="." unique_id=977996152]
+
+[node name="FirstItems" type="Node3D" parent="Level1" unique_id=1837856654]
+
+[node name="Conveyor" parent="Level1/FirstItems" unique_id=1881762726 instance=ExtResource("3_i6g32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65528107, 0.10052909, -7.5253096)
+
+[node name="Printer" parent="." unique_id=225825992 instance=ExtResource("2_wowpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.182304, 0.5, -8.510632)
+
+[node name="Conveyor" parent="." unique_id=1473381255 instance=ExtResource("3_i6g32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65528107, 0.10052909, -7.5253096)
+visible = false
+belt_material = ExtResource("4_1l0tm")

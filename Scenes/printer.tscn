@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b7qdi5atiuwnm"]
+
+[ext_resource type="Script" uid="uid://cflav53gkw5yq" path="res://printer.gd" id="1_jhpce"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ioy06"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bekmv"]
+albedo_color = Color(0.45452422, 0.45452428, 0.45452422, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ioy06"]
+material = SubResource("StandardMaterial3D_bekmv")
+size = Vector3(2, 1, 1)
+
+[node name="Printer" type="Node3D" unique_id=225825992]
+script = ExtResource("1_jhpce")
+
+[node name="Collision" type="StaticBody3D" parent="." unique_id=1420512123]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=1006184891]
+shape = SubResource("BoxShape3D_ioy06")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1725895921]
+mesh = SubResource("BoxMesh_ioy06")
+
+[node name="OutputPoint" type="Marker3D" parent="." unique_id=1707255096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43975133, 0, 0.850775)
+
+[node name="PrintTimer" type="Timer" parent="." unique_id=2143857785]

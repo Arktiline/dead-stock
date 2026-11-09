@@ -1,3 +1,15 @@
-# Godot 4+ specific ignores
+# Godot
 .godot/
-/android/
+.import/
+
+# Temporary files
+*.tmp
+*.bak
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

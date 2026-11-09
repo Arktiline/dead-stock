@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://2ul7nk8efegb"]
+
+[ext_resource type="Script" uid="uid://cwnjtrw8xch8i" path="res://conveyor.gd" id="1_nqhc4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fc0e3"]
+albedo_color = Color(0.099985994, 0.099985994, 0.099985994, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ioy06"]
+material = SubResource("StandardMaterial3D_fc0e3")
+size = Vector3(20, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j8viq"]
+size = Vector3(20, 0.17763671, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ioy06"]
+size = Vector3(20, 0.4, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7seds"]
+size = Vector3(20, 0.4, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6dvrc"]
+size = Vector3(20, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j8viq"]
+size = Vector3(20, 0.4, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6dvrc"]
+size = Vector3(20, 0.4, 0.2)
+
+[node name="Conveyor" type="Node3D" unique_id=1881762726]
+script = ExtResource("1_nqhc4")
+
+[node name="Belt" type="MeshInstance3D" parent="." unique_id=137791769]
+mesh = SubResource("BoxMesh_ioy06")
+
+[node name="Collisions" type="StaticBody3D" parent="." unique_id=754402278]
+
+[node name="BeltCollision" type="CollisionShape3D" parent="Collisions" unique_id=1645010002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.011181645, 0)
+shape = SubResource("BoxShape3D_j8viq")
+
+[node name="LeftWallCollision" type="CollisionShape3D" parent="Collisions" unique_id=671871988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09947088, -0.59682536)
+shape = SubResource("BoxShape3D_ioy06")
+
+[node name="RightWallCollision" type="CollisionShape3D" parent="Collisions" unique_id=29489567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10239652, 0.59682536)
+shape = SubResource("BoxShape3D_7seds")
+
+[node name="DetectionArea" type="Area3D" parent="." unique_id=533777205]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea" unique_id=228966768]
+shape = SubResource("BoxShape3D_6dvrc")
+
+[node name="LeftWall" type="MeshInstance3D" parent="." unique_id=1777659971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09947091, -0.59500766)
+mesh = SubResource("BoxMesh_j8viq")
+
+[node name="RightWall" type="MeshInstance3D" parent="." unique_id=2067546658]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10239649, 0.59682536)
+mesh = SubResource("BoxMesh_6dvrc")
