@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b7qdi5atiuwnm" path="res://Scenes/printer.tscn" id="2_wowpa"]
 [ext_resource type="PackedScene" uid="uid://2ul7nk8efegb" path="res://Scenes/conveyor.tscn" id="3_i6g32"]
 [ext_resource type="Material" uid="uid://w82k8syuuthq" path="res://ConveyorMaterial.tres" id="4_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://b7arnyiiohvh1" path="res://Scenes/UI.tscn" id="5_wowpa"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ioy06"]
 size = Vector2(20, 20)
@@ -49,11 +50,29 @@ shadow_enabled = true
 
 [node name="FirstItems" type="Node3D" parent="Level1" unique_id=1837856654]
 
-[node name="Conveyor2" parent="Level1/FirstItems" unique_id=1881762726 instance=ExtResource("3_i6g32")]
-transform = Transform3D(-0.9999999, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999999, 2.999, 0.1, -2.408)
+[node name="InitialConveyor" type="Node3D" parent="Level1/FirstItems" unique_id=1167343781]
+
+[node name="Conveyor" parent="Level1/FirstItems/InitialConveyor" unique_id=740080313 instance=ExtResource("3_i6g32")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -3.594, 0.1, -7.155)
 length = 11.5
 wall_height = 0.2
-surface_friction = null
+left_wall_enabled = true
+right_wall_enabled = true
+right_gap_offset = 5.899999999999999
+right_gap_size = 0.5
+front_wall_enabled = false
+back_wall_enabled = true
+belt_material = ExtResource("4_1l0tm")
+belt_speed = 2.5
+acceleration = 15.0
+target_group = "printed_cash"
+detection_mask = 1
+belt_layer = 1
+
+[node name="Conveyor2" parent="Level1/FirstItems/InitialConveyor" unique_id=1881762726 instance=ExtResource("3_i6g32")]
+transform = Transform3D(-0.9999999, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999999, 2.999, 0.09, -2.408)
+length = 11.5
+wall_height = 0.2
 left_wall_enabled = true
 right_wall_enabled = true
 right_gap_offset = -4.850000000000001
@@ -66,35 +85,8 @@ acceleration = 15.0
 target_group = "printed_cash"
 detection_mask = 1
 belt_layer = 1
-centering_strength = null
-centering_deadzone = null
-max_centering_speed = null
 
-[node name="Printer" parent="Level1/FirstItems" unique_id=225825992 instance=ExtResource("2_wowpa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.182304, 0.5, -8.510632)
-
-[node name="Conveyor" parent="Level1/FirstItems" unique_id=740080313 instance=ExtResource("3_i6g32")]
-transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -3.594, 0.1, -7.155)
-length = 11.5
-wall_height = 0.2
-surface_friction = null
-left_wall_enabled = true
-right_wall_enabled = true
-right_gap_offset = 5.899999999999999
-right_gap_size = 0.5
-front_wall_enabled = false
-back_wall_enabled = false
-belt_material = ExtResource("4_1l0tm")
-belt_speed = 2.5
-acceleration = 15.0
-target_group = "printed_cash"
-detection_mask = 1
-belt_layer = 1
-centering_strength = null
-centering_deadzone = null
-max_centering_speed = null
-
-[node name="Conveyor3" parent="Level1/FirstItems" unique_id=550023989 instance=ExtResource("3_i6g32")]
+[node name="Conveyor3" parent="Level1/FirstItems/InitialConveyor" unique_id=550023989 instance=ExtResource("3_i6g32")]
 transform = Transform3D(-0.9999999, 0, 8.7422755e-08, -3.0341027e-08, 0.93784255, -0.34706098, -8.198878e-08, -0.347061, -0.9378424, 2.999, 0.5772675, 4.671492)
 length = 3.0
 wall_height = 0.2
@@ -108,3 +100,24 @@ acceleration = 15.0
 target_group = "printed_cash"
 detection_mask = 1
 belt_layer = 1
+
+[node name="InitialPrinter" type="Node3D" parent="Level1/FirstItems" unique_id=1461943406]
+
+[node name="Printer" parent="Level1/FirstItems/InitialPrinter" unique_id=225825992 instance=ExtResource("2_wowpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.182304, 0.5, -8.510632)
+
+[node name="PrinterBuy" type="Node3D" parent="Level1/FirstItems" unique_id=784612854]
+
+[node name="Printer" parent="Level1/FirstItems/PrinterBuy" unique_id=1665341815 instance=ExtResource("2_wowpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.657881, 0.5, -8.510632)
+purchase_id = &"ExtraPrinter1"
+
+[node name="Printer2" parent="Level1/FirstItems/PrinterBuy" unique_id=664838842 instance=ExtResource("2_wowpa")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.657881, 0.5, -5.804744)
+purchase_id = &"ExtraPrinter2"
+
+[node name="Printer3" parent="Level1/FirstItems/PrinterBuy" unique_id=521859160 instance=ExtResource("2_wowpa")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8.147085, 0.5, -5.804744)
+purchase_id = &"ExtraPrinter3"
+
+[node name="CanvasLayer" parent="." unique_id=776331451 instance=ExtResource("5_wowpa")]

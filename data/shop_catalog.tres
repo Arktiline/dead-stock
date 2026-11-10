@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="ShopCatalog" format=3 uid="uid://2jbsevs780jk"]
+
+[ext_resource type="Script" uid="uid://cmbm3q5bh6dj7" path="res://shop_item.gd" id="1_w5jhb"]
+[ext_resource type="Script" uid="uid://b06yhke74ostl" path="res://shop_catalog.gd" id="2_xlro3"]
+
+[sub_resource type="Resource" id="Resource_aww8k"]
+script = ExtResource("1_w5jhb")
+id = &"BasePrinter"
+display_name = "StartingPrinter"
+price = 25
+metadata/_custom_type_script = "uid://cmbm3q5bh6dj7"
+
+[sub_resource type="Resource" id="Resource_k6j26"]
+script = ExtResource("1_w5jhb")
+id = &"BaseConveyor"
+display_name = "StartingConveyor"
+category = 1
+price = 25
+metadata/_custom_type_script = "uid://cmbm3q5bh6dj7"
+
+[sub_resource type="Resource" id="Resource_w5jhb"]
+script = ExtResource("1_w5jhb")
+id = &"ExtraPrinter1"
+display_name = "Basic Printer"
+price = 50
+requires = Array[StringName]([&"BasePrinter"])
+metadata/_custom_type_script = "uid://cmbm3q5bh6dj7"
+
+[sub_resource type="Resource" id="Resource_xlro3"]
+script = ExtResource("1_w5jhb")
+id = &"ExtraPrinter2"
+display_name = "Basic Printer"
+requires = Array[StringName]([&"ExtraPrinter1"])
+metadata/_custom_type_script = "uid://cmbm3q5bh6dj7"
+
+[sub_resource type="Resource" id="Resource_pyosk"]
+script = ExtResource("1_w5jhb")
+id = &"ExtraPrinter3"
+display_name = "Basic Printer"
+price = 150
+requires = Array[StringName]([&"ExtraPrinter2"])
+metadata/_custom_type_script = "uid://cmbm3q5bh6dj7"
+
+[resource]
+script = ExtResource("2_xlro3")
+items = Array[ExtResource("1_w5jhb")]([SubResource("Resource_aww8k"), SubResource("Resource_k6j26"), SubResource("Resource_w5jhb"), SubResource("Resource_xlro3"), SubResource("Resource_pyosk")])
+metadata/_custom_type_script = "uid://b06yhke74ostl"

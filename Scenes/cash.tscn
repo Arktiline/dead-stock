@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bjagkjyxrwqf5" path="res://cash.gd" id="1_8fn75"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6dvrc"]
-albedo_color = Color(5.053729e-07, 0.6170519, 0.17544863, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_j8viq"]
 material = SubResource("StandardMaterial3D_6dvrc")

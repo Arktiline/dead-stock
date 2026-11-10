@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://b7arnyiiohvh1"]
+
+[ext_resource type="Script" uid="uid://ck8qvp51bafvw" path="res://Scenes/ui_root.gd" id="1_nxvpl"]
+[ext_resource type="Script" uid="uid://ck1urpkxjnfd4" path="res://Scenes/shop_panel.gd" id="2_dewlx"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=776331451]
+
+[node name="Root" type="Control" parent="." unique_id=641483719]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+script = ExtResource("1_nxvpl")
+
+[node name="TopBar" type="MarginContainer" parent="Root" unique_id=551525457]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="HBox" type="HBoxContainer" parent="Root/TopBar" unique_id=1131854904]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="Root/TopBar/HBox" unique_id=1194660765]
+layout_mode = 2
+text = "500€"
+
+[node name="ShopButton" type="Button" parent="Root/TopBar/HBox" unique_id=214178927]
+layout_mode = 2
+text = "Shop"
+
+[node name="ShopPanel" type="PanelContainer" parent="Root" unique_id=1364033205]
+custom_minimum_size = Vector2(500, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_dewlx")
+
+[node name="Margin" type="MarginContainer" parent="Root/ShopPanel" unique_id=1872489126]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Root/ShopPanel/Margin" unique_id=154990117]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Header" type="HBoxContainer" parent="Root/ShopPanel/Margin/VBox" unique_id=1178542661]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="Root/ShopPanel/Margin/VBox/Header" unique_id=1714178696]
+layout_mode = 2
+text = "MADAFAKIN SHOOOP"
+
+[node name="CloseButton" type="Button" parent="Root/ShopPanel/Margin/VBox/Header" unique_id=2088271049]
+layout_mode = 2
+text = "X"
+
+[node name="Tabs" type="TabContainer" parent="Root/ShopPanel/Margin/VBox" unique_id=2072141685]
+layout_mode = 2
+size_flags_vertical = 3
+tab_alignment = 2
+current_tab = 0
+
+[node name="Machines" type="ScrollContainer" parent="Root/ShopPanel/Margin/VBox/Tabs" unique_id=1789894236]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="List" type="VBoxContainer" parent="Root/ShopPanel/Margin/VBox/Tabs/Machines" unique_id=1040607416]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Conveyors" type="ScrollContainer" parent="Root/ShopPanel/Margin/VBox/Tabs" unique_id=1437860265]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="List" type="VBoxContainer" parent="Root/ShopPanel/Margin/VBox/Tabs/Conveyors" unique_id=449448229]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Elements" type="ScrollContainer" parent="Root/ShopPanel/Margin/VBox/Tabs" unique_id=1831540030]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="List" type="VBoxContainer" parent="Root/ShopPanel/Margin/VBox/Tabs/Elements" unique_id=1395347041]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Toast" type="Label" parent="Root" unique_id=1723720776]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0

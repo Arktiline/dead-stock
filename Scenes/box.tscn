@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bf04623tc3qq8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ioy06"]
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=2136697835]
+
+[node name="FillPivot" type="Node3D" parent="." unique_id=1357102458]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FillPivot" unique_id=2130703316]
+
+[node name="BoxCollision" type="CollisionShape3D" parent="." unique_id=1815433654]
+shape = SubResource("BoxShape3D_ioy06")
+
+[node name="BoxMesh" type="MeshInstance3D" parent="." unique_id=417083056]

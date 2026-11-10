@@ -2,6 +2,12 @@
 class_name Conveyor
 extends Node3D
 
+@export_category("Shop")
+## Matches a ShopItem id in the catalog, e.g. printer_basic.
+## Leave empty for a printer that is always on.
+@export var purchase_id: StringName = &"BaseConveyor"
+@export var hide_when_locked := true
+
 @export_category("Dimensions")
 @export_range(1.0, 30.0, 0.5) var length := 6.0:
 	set(v): length = v; _queue_rebuild()
@@ -97,7 +103,35 @@ var _dirty := false
 func _ready() -> void:
 	_build_nodes()
 	_rebuild()
+	
+	if not Engine.is_editor_hint():
+		if purchase_id != &"" and not PurchaseManager.catalog.has(purchase_id):
+			push_warning("%s: unknown purchase_id '%s'" % [name, purchase_id])
+		PurchaseManager.purchased.connect(_on_purchased)
+		PurchaseManager.reset_done.connect(_apply_lock)
 
+func is_unlocked() -> bool:
+	# The editor has no autoloads, and you always want to see everything there.
+	if Engine.is_editor_hint():
+		return true
+	return purchase_id == &"" or PurchaseManager.is_owned(purchase_id)
+
+## Shows/hides the conveyor and turns its collision and detection on/off.
+func _apply_lock() -> void:
+	if _body == null:
+		return
+
+	var unlocked := is_unlocked()
+	var shown := unlocked or not hide_when_locked
+
+	visible = shown
+	_body.collision_layer = belt_layer if shown else 0
+	_area.set_deferred("monitoring", unlocked)
+
+
+func _on_purchased(id: StringName) -> void:
+	if id == purchase_id:
+		_apply_lock()
 
 func _build_nodes() -> void:
 	if _body:
@@ -144,7 +178,6 @@ func _rebuild() -> void:
 	var end_span := maxf(0.1, width - wall_thickness * 2.0)
 	var end_z := length / 2.0 - wall_thickness / 2.0
 
-	_body.collision_layer = belt_layer
 	_area.collision_mask = detection_mask
 
 	_set_part("belt", Vector3(width, belt_thickness, length), Vector3.ZERO, true, belt_material)
@@ -161,6 +194,7 @@ func _rebuild() -> void:
 	shape.size = Vector3(width, wall_height + 0.5, length)
 	_area_col.shape = shape
 	_area_col.position = Vector3(0, belt_thickness / 2.0 + wall_height / 2.0, 0)
+	_apply_lock()
 
 
 ## Builds one wall as up to two segments with a gap between them.
@@ -218,6 +252,8 @@ func _contains(body: Node3D) -> bool:
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint() or _area == null:
+		return
+	if not is_unlocked() or not _area.monitoring:
 		return
 
 	var me := get_instance_id()
