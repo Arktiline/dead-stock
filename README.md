@@ -19,7 +19,7 @@ Sinu ülesandeks on arendada oma tehast, hallata tootmisprotsesse, kaitsta opera
 | Liige | Roll |
 |---|---|
 | **Kert Märss** | Projekti juht, programmeerija, 3D-modelleerija, UI-disainer |
-| **Joel-Mathias Priidik** | Roll täpsustamisel |
+| **Joel-Mathias Priidik** | Pro GUY! |
 | **Karl-Christian Planken** | Roll täpsustamisel |
 
 ## Projekti kohta
